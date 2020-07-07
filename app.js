@@ -3,11 +3,15 @@ const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
+const saveBtn = document.getElementById("jsSave");
 
 canvas.width = 600;
 canvas.height = 600;
 // canvas need to have pixel modifier size which is real size in window, not only css size
 
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height)
+// when canvas loaded, bg-color is transparent. so fill it once with white
 
 ctx.strokeStyle = "default";
 ctx.fillStyle = "default";
@@ -71,6 +75,19 @@ function handleCanvasClick() {
   }
 }
 
+function handleRightClick(event) {
+  event.preventDefault()
+}
+
+function handleSaveClick() {
+  const image = canvas.toDataURL();
+  const link = document.createElement("a");
+  link.href = image;
+  link.download = "PaintJS[EXPORT]";
+  link.click();
+  // convert data to img url, and link it with click to download
+}
+
 
 
 if (canvas) {
@@ -79,6 +96,8 @@ if (canvas) {
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", stopPainting);
   canvas.addEventListener("click", handleCanvasClick);
+  canvas.addEventListener("contextmenu", handleRightClick);
+  // prevent context menu means block rightclick
 }
 
 Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
@@ -92,3 +111,6 @@ if (mode) {
   mode.addEventListener("click", handleModeClick);
 }
 
+if (saveBtn) {
+  saveBtn.addEventListener("click", handleSaveClick)
+}
