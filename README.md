@@ -22,8 +22,7 @@ This is my small toyproject for practice HTML, CSS, JAVASCRIPT.
 <br>
 Very simple drawing canvas like windows painter, you can choose color and thickness, you can fill canvas with choosed color, also you can save your drawing as png format.
 
-<img src="./img/paint-js1.png">
-<img src="./img/paint-js2.png">
+<img src="./img/paint-js.gif">
 
 
 
